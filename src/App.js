@@ -1,25 +1,61 @@
 import logo from './logo.svg';
 import './App.css';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import Root from './components/Root';
+import ErrorPage from './pages/ErrorPage';
+import HomePage from './pages/HomePage';
+import SignInPage from './pages/SignInPage';
+import SignUpPage from './pages/SignUpPage';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Root />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: '',
+        element: <HomePage />,
+      },
+      {
+        path: 'about',
+        element: <div>This is About Page</div>,
+      },
+      {
+        path: 'brands',
+        element: <div>This is Brands Page</div>,
+      },
+
+      {
+        path: 'news',
+        element: <div>This is News Page</div>,
+      },
+      {
+        path: 'sales',
+        element: <div>This is Sales Page</div>,
+      },
+      {
+        path: 'offers',
+        element: <div>This is Offers Page</div>,
+      },
+      {
+        path: '/signin',
+        element: <SignInPage />,
+      },
+      {
+        path: '/signup',
+        element: <SignUpPage />,
+      },
+    ],
+  },
+]);
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
