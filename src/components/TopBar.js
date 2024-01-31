@@ -146,7 +146,7 @@ export default function TopBar() {
               },
             }}
           >
-            <FavoriteOutlinedIcon color="error" sx={{ fontSize: '28px' }} />
+            <FavoriteOutlinedIcon color="error" sx={{ fontSize: '27px' }} />
           </Box>
         </Link>
         {context.user ? (
