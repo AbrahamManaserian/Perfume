@@ -59,7 +59,7 @@ export default function SideBar(props) {
   const [sideBarSize, setSideBarSize] = useState(true);
   const location = useLocation();
   const url = new URL(window.location.href);
-  // console.log(url.searchParams.get('asd'));
+  // console.log(url.searchParams.get('sasd'));
   function getColorOfIcon(urlPath) {
     if (urlPath === location.pathname) {
       return '#00c853';
@@ -250,9 +250,7 @@ export default function SideBar(props) {
           <Typography
             sx={{ fontWeight: 500 }}
             paddingLeft={sideBarSize ? '20px' : 0}
-            color={
-              ['/summer', '/winter', '/spring', '/autumn'].includes(location.pathname) ? '#00c853' : '#616161'
-            }
+            color={location.pathname.includes('perfume') ? '#00c853' : '#616161'}
             fontSize={sideBarSize ? 15 : 9}
           >
             {getText('perfume', context.language, textSideBar)}
@@ -275,18 +273,19 @@ export default function SideBar(props) {
                   justifyContent: sideBarSize ? '' : 'center',
                   flexDirection: sideBarSize ? 'row' : 'column',
                   height: sideBarSize ? '45px' : '45px',
-                  color: location.pathname === `/${item}` ? 'black' : '#616161',
+                  color: url.searchParams.get('s') === item ? 'black' : '#616161',
                   // paddingLeft: '20px',
                 }}
                 className="linkSideBar"
-                to={`/${item}`}
+                to={`/perfume?s=${item}`}
               >
                 <FiberManualRecordIcon
                   sx={{
                     width: '15px',
                     // height: '15px',
                     paddingLeft: sideBarSize ? '20px' : 0,
-                    fontSize: location.pathname === `/${item}` ? '14px' : '6px',
+                    fontSize: url.searchParams.get('s') === item ? '14px' : '6px',
+                    color: url.searchParams.get('s') === item ? '#00c853' : '6px',
                   }}
                 />
                 <Typography

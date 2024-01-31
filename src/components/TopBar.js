@@ -1,4 +1,4 @@
-import { Badge, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
+import { Avatar, Badge, Box, Grid, Menu, MenuItem, Typography } from '@mui/material';
 import { Link, useLocation } from 'react-router-dom';
 import FlagMenu from './FlagMenu';
 import { BasketIcon } from './SVGIcons';
@@ -6,12 +6,13 @@ import FavoriteTwoToneIcon from '@mui/icons-material/FavoriteTwoTone';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { AppContext } from './Root';
 import { useContext, useState } from 'react';
-import { barText, getText } from '../texts';
+import { barText, getText, textSignInUp } from '../texts';
 import { getAuth, signOut } from 'firebase/auth';
 import DrawerSideBar from './DrawerSideBar';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 
-export function UserMenu() {
+export function UserMenu({ url, location, context }) {
+  // console.log(context.user);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -33,7 +34,17 @@ export function UserMenu() {
   }
   return (
     <Box display="flex" alignContent="center" sx={{ pl: 1 }}>
-      <AccountCircleIcon
+      <Avatar
+        color="primary"
+        aria-controls={open ? 'basic-menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
+        onClick={handleClick}
+        sx={{ cursor: 'pointer', width: 36, height: 36, ml: { xs: 0, sm: '5px' } }}
+        alt={context.user?.displayName}
+        src={context.user?.photoURL}
+      />
+      {/* <AccountCircleIcon
         // fontSize="52px"
         color="primary"
         aria-controls={open ? 'basic-menu' : undefined}
@@ -41,7 +52,7 @@ export function UserMenu() {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
         sx={{ cursor: 'pointer', fontSize: '38px' }}
-      />
+      /> */}
       <Menu
         id="basic-menu"
         anchorEl={anchorEl}
@@ -51,20 +62,56 @@ export function UserMenu() {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <Link
-          style={{ color: 'inherit', display: 'block', width: '100%', textDecoration: 'none' }}
-          to="/georgi"
-        >
-          <MenuItem onClick={handleClose}>Profile</MenuItem>
-        </Link>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={signOutUser}>Logout</MenuItem>
+        {context.user ? (
+          <div>
+            <Link
+              style={{
+                color: 'inherit',
+                display: 'block',
+                width: '100%',
+                textDecoration: 'none',
+              }}
+              to="/profile"
+            >
+              <MenuItem sx={{ textTransform: 'capitalize' }} onClick={handleClose}>
+                {context.user.displayName.toLowerCase()}
+                {/* {getText('myAccount', context.language, textSignInUp)} */}
+              </MenuItem>
+            </Link>
+            <Link
+              style={{ color: 'inherit', display: 'block', width: '100%', textDecoration: 'none' }}
+              to="/profile"
+            >
+              <MenuItem onClick={handleClose}>
+                {getText('myAccount', context.language, textSignInUp)}
+              </MenuItem>
+            </Link>
 
+            <MenuItem onClick={signOutUser}>{getText('logOut', context.language, textSignInUp)}</MenuItem>
+          </div>
+        ) : (
+          <div>
+            {' '}
+            <Link
+              style={{ color: 'inherit', display: 'block', width: '100%', textDecoration: 'none' }}
+              to={
+                url.pathname.includes('signin')
+                  ? url.search
+                  : `/signin/?${location.pathname + location.search}`
+              }
+            >
+              <MenuItem onClick={handleClose}>{getText('signIn', context.language, textSignInUp)}</MenuItem>
+            </Link>
+          </div>
+        )}
         <Link
           style={{ color: 'inherit', display: 'block', width: '100%', textDecoration: 'none' }}
-          to="/admin"
+          to="/preferred"
         >
-          <MenuItem onClick={handleClose}>Admin</MenuItem>
+          <MenuItem onClick={handleClose}>
+            {getText('favorite', context.language, textSignInUp)}
+            <FavoriteOutlinedIcon color="error" sx={{ fontSize: '16px', ml: '10px' }} />
+          </MenuItem>
         </Link>
       </Menu>
     </Box>
@@ -130,37 +177,8 @@ export default function TopBar() {
             {/* </Link> */}
           </Badge>
         </Link>
-        <Link to="/preferred">
-          <Box
-            sx={{
-              p: '5px',
-              m: '5px',
-              display: 'flex',
-              justifyContent: 'center',
-              cursor: 'pointer',
-              borderRadius: '50%',
-              transition: 'all 0.2s ease-out',
-              '&:hover': {
-                bgcolor: '#e0e0e0',
-                transform: 'scale(1.02,1.02)',
-              },
-            }}
-          >
-            <FavoriteOutlinedIcon color="error" sx={{ fontSize: '27px' }} />
-          </Box>
-        </Link>
-        {context.user ? (
-          <UserMenu />
-        ) : (
-          <Link
-            className="linkRouter"
-            to={
-              url.pathname.includes('signin') ? url.search : `/signin/?${location.pathname + location.search}`
-            }
-          >
-            {getText('signIn', context.language, barText)}
-          </Link>
-        )}
+
+        <UserMenu url={url} location={location} context={context} />
       </Grid>
     </Grid>
   );

@@ -1,13 +1,15 @@
 import { Box, Grid, Typography } from '@mui/material';
 import { SampleNextArrow, SamplePrevArrow } from './SlideCarousel';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Slider from 'react-slick';
 import BoltIcon from '@mui/icons-material/Bolt';
 import AddTwoToneIcon from '@mui/icons-material/AddTwoTone';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import FavoriteBorderTwoToneIcon from '@mui/icons-material/FavoriteBorderTwoTone';
+import { AppContext } from './Root';
+import { getText, textSlideCarousel, textSlideCarouselSmall } from '../texts';
 
-export function Card({ image, name }) {
+export function Card({ image, name, currency }) {
   return (
     <Box
       sx={{
@@ -50,7 +52,7 @@ export function Card({ image, name }) {
           23,000
         </Typography>
         <Typography color="error" sx={{ fontSize: '9px', lineHeight: '8px', fontWeight: 500, ml: '5px' }}>
-          AMD
+          {currency}
         </Typography>
       </Box>
     </Box>
@@ -115,6 +117,7 @@ export const data = [
 
 export default function SlideCarouselSmall() {
   const [showArrows, setShowArrows] = useState(false);
+  const context = useContext(AppContext);
   const settings = {
     // dots: true,
     infinite: true,
@@ -165,16 +168,27 @@ export default function SlideCarouselSmall() {
         },
       }}
     >
-      <Grid container my="20px" alignItems="center" justifyContent="space-between" item xs={12}>
+      <Grid container my="20px" alignItems="flex-end" justifyContent="space-between" item xs={12}>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <BoltIcon color="error" />
-          <Typography sx={{ fontSize: '24px', fontWeight: 700, color: '#37474f' }}>Best Sellers </Typography>
+          <Typography sx={{ fontSize: { xs: '20px', sm: '24px' }, fontWeight: 700, color: '#37474f' }}>
+            {getText('head', context.language, textSlideCarouselSmall)}
+          </Typography>
         </Box>
-        <Typography sx={{ fontSize: '14px', color: '#37474f', mr: '20px' }}>View all</Typography>
+        <Typography sx={{ fontSize: { xs: '11px', sm: '14px' }, color: '#37474f', mr: '20px' }}>
+          {getText('viewAll', context.language, textSlideCarouselSmall)}
+        </Typography>
       </Grid>
       <Slider {...settings}>
         {data.map((item, index) => {
-          return <Card key={index} image={item.image} name={item.name} />;
+          return (
+            <Card
+              currency={getText('currency', context.language, textSlideCarousel)}
+              key={index}
+              image={item.image}
+              name={item.name}
+            />
+          );
         })}
       </Slider>
     </Grid>

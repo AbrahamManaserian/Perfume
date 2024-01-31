@@ -1,8 +1,10 @@
 import { Box, Grid, Typography } from '@mui/material';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { SampleNextArrow, SamplePrevArrow } from './SlideCarousel';
 import Slider from 'react-slick';
 import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
+import { AppContext } from './Root';
+import { getText, textSlideCarousel3Items, textSlideCarouselSmall } from '../texts';
 
 const dataSlide = [
   {
@@ -39,6 +41,7 @@ export function CardCarousel({ images }) {
 }
 
 export default function SlideCarousel3Items({ header }) {
+  const context = useContext(AppContext);
   const [showArrows, setShowArrows] = useState(false);
   const settings = {
     // dots: true,
@@ -90,11 +93,18 @@ export default function SlideCarousel3Items({ header }) {
         },
       }}
     >
-      <Grid container my="20px" alignItems="center" item xs={12}>
-        <CardGiftcardIcon color="error" />
-        <Typography sx={{ fontSize: '24px', fontWeight: 700, color: '#37474f', ml: '8px' }}>
-          {' '}
-          {header}
+      <Grid container my="20px" alignItems="flex-end" justifyContent="space-between" item xs={12}>
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <CardGiftcardIcon color="error" />
+
+          <Typography
+            sx={{ fontSize: { xs: '20px', sm: '24px' }, fontWeight: 700, color: '#37474f', ml: '8px' }}
+          >
+            {getText('head', context.language, textSlideCarousel3Items)}
+          </Typography>
+        </Box>
+        <Typography sx={{ fontSize: { xs: '11px', sm: '14px' }, color: '#37474f', mr: '20px' }}>
+          {getText('viewAll', context.language, textSlideCarouselSmall)}
         </Typography>
       </Grid>
       <Slider {...settings}>

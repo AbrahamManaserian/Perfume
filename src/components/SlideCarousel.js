@@ -6,11 +6,13 @@ import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import EastIcon from '@mui/icons-material/East';
 import BoltIcon from '@mui/icons-material/Bolt';
 import RadioButtonUncheckedRoundedIcon from '@mui/icons-material/RadioButtonUncheckedRounded';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { DramIcon } from './SVGIcons';
 import AddTwoToneIcon from '@mui/icons-material/AddTwoTone';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import FavoriteBorderTwoToneIcon from '@mui/icons-material/FavoriteBorderTwoTone';
+import { getText, textHomePage, textSlideCarousel, textSlideCarouselSmall } from '../texts';
+import { AppContext } from './Root';
 
 const images = [
   'https://www.burmunk.am/media/1200x1200/2023/97/33461304137521.jpg',
@@ -67,7 +69,7 @@ export function SamplePrevArrow(props) {
   );
 }
 
-function Card1({ image, index }) {
+function Card1({ image, currency }) {
   const [prefered, setPrefered] = useState(false);
   return (
     <Box
@@ -163,14 +165,14 @@ function Card1({ image, index }) {
       >
         <Typography sx={{ color: '#d81b60', fontSize: '15px', fontWeight: 500 }}>360000</Typography>
         <Typography sx={{ color: '#d81b60', fontSize: '9px', fontWeight: 500, m: '0 0 3px 3px' }}>
-          AMD
+          {currency}
         </Typography>
 
         <Typography sx={{ ml: '10px', color: '#78909c', fontSize: '15px', textDecoration: 'line-through' }}>
           470000
         </Typography>
         <Typography sx={{ color: '#78909c', fontSize: '9px', fontWeight: 500, m: '0 0 3px 3px' }}>
-          AMD
+          {currency}
         </Typography>
       </Box>
       <Box
@@ -205,6 +207,7 @@ function Card1({ image, index }) {
 
 export default function InfiniteCarousel({ color }) {
   const [showArrows, setShowArrows] = useState(false);
+  const context = useContext(AppContext);
   // console.log(showArrows);
   const settings = {
     // dots: true,
@@ -256,13 +259,27 @@ export default function InfiniteCarousel({ color }) {
         },
       }}
     >
-      <Grid container my="20px" alignItems="center" item xs={12}>
-        <BoltIcon color="error" />
-        <Typography sx={{ fontSize: '24px', fontWeight: 700, color: '#37474f' }}>Flash Deals</Typography>
+      <Grid container my="20px" alignItems="flex-end" justifyContent="space-between" item xs={12}>
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <BoltIcon color="error" />
+          <Typography sx={{ fontSize: { xs: '20px', sm: '24px' }, fontWeight: 700, color: '#37474f' }}>
+            {getText('flashDeals', context.language, textSlideCarousel)}
+          </Typography>
+        </Box>
+        <Typography sx={{ fontSize: { xs: '11px', sm: '14px' }, color: '#37474f', mr: '20px' }}>
+          {getText('viewAll', context.language, textSlideCarouselSmall)}
+        </Typography>
       </Grid>
       <Slider {...settings}>
         {images.map((item, index) => {
-          return <Card1 key={index} index={index} image={item} />;
+          return (
+            <Card1
+              currency={getText('currency', context.language, textSlideCarousel)}
+              key={index}
+              index={index}
+              image={item}
+            />
+          );
         })}
       </Slider>
     </Grid>

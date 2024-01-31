@@ -4,8 +4,12 @@ import SlideCarousel3Items from '../components/SlideCarousel3Items';
 import SlideCarousel from '../components/SlideCarousel';
 import SlideCarouselSmall, { Card, data } from '../components/SlideCarouselSmall';
 import BoltIcon from '@mui/icons-material/Bolt';
+import { useContext } from 'react';
+import { AppContext } from '../components/Root';
+import { getText, textHomePage, textSlideCarousel, textSlideCarouselSmall } from '../texts';
 
 export default function HomePage() {
+  const context = useContext(AppContext);
   const newData = [
     {
       name: 'Acqua di Gio Eau de Parfum',
@@ -45,17 +49,16 @@ export default function HomePage() {
           sx={{ fontSize: { xs: '30px', sm: '47px' }, lineHeight: { xs: '37px', sm: '57px' }, pb: '30px' }}
           fontWeight={700}
         >
-          20% Off For Your First Shopping
+          {getText('headBig', context.language, textHomePage)}
         </Typography>
         <Typography sx={{ fontSize: { xs: '14px', sm: '13px' }, lineHeight: '25px' }}>
-          FREE Delivery in every City of Armenia. Days Easy Return Days Easy Return, Exchange and Refund
-          Policy
+          {getText('headSmall', context.language, textHomePage)}
         </Typography>
         <Button
           variant="contained"
           sx={{ textTransform: 'capitalize', bgcolor: '#c2185b', px: '30px', mt: '20px', fontSize: '18px' }}
         >
-          Shop Now
+          {getText('headButton', context.language, textHomePage)}
         </Button>
       </Grid>
       <Grid
@@ -121,7 +124,7 @@ export default function HomePage() {
               color: '#37474f',
             }}
           >
-            Choose The Best for You
+            {getText('bestOffer', context.language, textHomePage)}
           </Typography>
           <div
             style={{
@@ -149,9 +152,14 @@ export default function HomePage() {
       <Grid container p="40px 10px 10px 20px" alignItems="center" justifyContent="space-between" item xs={12}>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <BoltIcon color="error" />
-          <Typography sx={{ fontSize: '24px', fontWeight: 700, color: '#37474f' }}>Best Sellers</Typography>
+          <Typography sx={{ fontSize: { xs: '20px', sm: '24px' }, fontWeight: 700, color: '#37474f' }}>
+            {getText('topBrands', context.language, textHomePage)}
+          </Typography>
         </Box>
-        <Typography sx={{ fontSize: '14px', color: '#37474f', mr: '20px' }}>View all</Typography>
+        <Typography sx={{ fontSize: { xs: '11px', sm: '14px' }, color: '#37474f', mr: '20px' }}>
+          {getText('viewAll', context.language, textSlideCarouselSmall)}
+          {/* View all */}
+        </Typography>
       </Grid>
       <Grid
         sx={{ maxHeight: '570px', overflow: 'hidden', bgcolor: 'white' }}
@@ -210,7 +218,7 @@ export default function HomePage() {
                     color="error"
                     sx={{ fontSize: '9px', lineHeight: '8px', fontWeight: 500, ml: '5px' }}
                   >
-                    AMD
+                    {getText('currency', context.language, textSlideCarousel)}
                   </Typography>
                 </Box>
               </Box>
@@ -219,7 +227,7 @@ export default function HomePage() {
         })}
       </Grid>
 
-      <Typography mt={150}> Abraham </Typography>
+      <Typography mt={150}> </Typography>
     </Grid>
   );
 }

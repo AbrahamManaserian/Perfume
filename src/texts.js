@@ -235,6 +235,21 @@ export const textSignInUp = {
     ru: 'Войти',
     am: 'Մուտք',
   },
+  logOut: {
+    en: 'Log out',
+    ru: 'Выйти',
+    am: 'Դուրս գալ',
+  },
+  favorite: {
+    en: 'Favorite',
+    ru: 'Избранное',
+    am: 'Նախընտրած',
+  },
+  myAccount: {
+    en: 'My account',
+    ru: 'Моя страница',
+    am: 'Իմ էջը',
+  },
   email: {
     en: 'Email Address',
     ru: 'Электронная почта',
@@ -321,142 +336,64 @@ export const textSignInUp = {
   //     am: 'Ազգանուն *',
   //   },
 };
-
 export const textHomePage = {
-  passenger: {
-    en: 'Passenger',
-    ru: 'Легковым',
-    am: 'Մարդատար',
+  headBig: {
+    en: '20% Off For Your First Shopping',
+    ru: 'Скидка 20% на первую покупку',
+    am: '20% զեղչ առաջին գնման համար',
   },
-  trucks: {
-    en: 'Trucks',
-    ru: 'Грузовикам',
-    am: 'Բեռնատար',
+  headSmall: {
+    en: 'FREE Delivery in every City of Armenia. Easy Return, Exchange and Refund Policy',
+    ru: 'БЕСПЛАТНАЯ доставка в любой город Армении. Простая политика возврата, обмена и возврата',
+    am: 'ԱՆՎՃԱՐ առաքում Հայաստանի բոլոր քաղաքներում։ Հեշտ վերադարձի, փոխանակման և փոխհատուցման քաղաքականություն',
   },
-  chooseTyre: {
-    en: 'Tyres',
-    ru: 'Шины',
-    am: 'Անվադողեր',
+  headButton: {
+    en: 'Shop Now',
+    ru: 'Купить',
+    am: 'Գնեք հիմա',
   },
-  chooseWheel: {
-    en: 'Wheels',
-    ru: 'Колеса',
-    am: 'Անիվներ',
+
+  bestOffer: {
+    en: 'Choose The Best for You',
+    ru: 'Выбери лучшее для себя',
+    am: 'Ընտրիր լավագույնը քեզ համար',
   },
-  width: {
-    en: 'Width',
-    ru: 'Ширина',
-    am: 'Լայնությունը',
+  topBrands: {
+    en: 'Top Brands',
+    ru: 'Лучшие бренды',
+    am: 'Թոփ բրենդներ',
   },
-  profile: {
-    en: 'Height',
-    ru: 'Профиль',
-    am: 'Պրոֆիլ',
+};
+
+export const textSlideCarousel = {
+  flashDeals: {
+    en: 'Flash Deals',
+    ru: 'Горящие предложения',
+    am: 'Թեժ առաջարկներ',
   },
-  diameter: {
-    en: 'Diameter',
-    ru: 'Диаметр',
-    am: 'Տրամագիծը',
+  currency: {
+    en: 'AMD',
+    ru: 'драм',
+    am: 'դրամ',
   },
-  discountedItems: {
-    en: 'Discounted items',
-    ru: 'Товары со скидкой',
-    am: 'Զեղչված ապրանքներ',
+};
+export const textSlideCarousel3Items = {
+  head: {
+    en: 'A Gift for a Loved One',
+    ru: 'Подарок любимому',
+    am: 'Նվեր սիրելիին',
   },
-  topTyres: {
-    en: 'Top tires',
-    ru: 'Топ шины',
-    am: 'Տոպ անվադողեր',
+};
+export const textSlideCarouselSmall = {
+  head: {
+    en: 'Best Sellers',
+    ru: 'Бестселлеры',
+    am: 'Բեսթսելերներ',
   },
-  searchResult: {
-    en: 'Searching results',
-    ru: 'Результаты поиска',
-    am: 'Որոնման արդյունքները',
-  },
-  summer: {
-    en: 'Summer',
-    ru: 'Летние',
-    am: 'Ամառ',
-  },
-  winter: {
-    en: 'Winter',
-    ru: 'Зимние',
-    am: 'Ձմեռ',
-  },
-  allSeason: {
-    en: 'All season',
-    ru: 'Всесезонные',
-    am: 'Ամբողջ սեզոնի',
-  },
-  search: {
-    en: 'Search',
-    ru: 'Поиск',
-    am: 'Փնտրել',
-  },
-  bolt: {
-    en: 'Вылет',
-    ru: 'Вылет',
-    am: 'Вылет',
-  },
-  from: {
-    en: 'from',
-    ru: 'от',
-    am: 'սկս',
-  },
-  to: {
-    en: 'to',
-    ru: 'до',
-    am: 'մին',
-  },
-  SUV: {
-    en: 'SUV',
-    ru: 'Внедорожник',
-    am: 'Ամենագնաց',
-  },
-  all: {
-    en: 'All',
+  viewAll: {
+    en: 'View all',
     ru: 'Все',
-    am: 'Ամբողջը',
-  },
-  apply: {
-    en: 'Apply',
-    ru: 'Показать',
-    am: 'Կիրառել',
-  },
-  reset: {
-    en: 'Reset',
-    ru: 'Сбросить',
-    am: 'Չեղարկել',
-  },
-  manufacturers: {
-    en: 'Manufacturers',
-    ru: 'Производители',
-    am: 'Արտադրողներ',
-  },
-  addCart: {
-    en: 'Add to Cart',
-    ru: 'Добавить в корзину',
-    am: 'Ավելացնել զամբյուղ',
-  },
-  smallTruck: {
-    en: 'Small trucks and commercial (up to 3.5 tons)',
-    ru: 'Малые грузовики и коммерческий (до 3,5 тонн)',
-    am: 'Փոքր բեռնատարներ և կոմերցիոն (մինչև 3,5 տոննա)',
-  },
-  carType: {
-    en: 'Vehicle type',
-    ru: 'Тип автомобиля',
-    am: 'Տրանսպորտի տեսակը',
-  },
-  uniquePrice: {
-    en: 'Price for one',
-    ru: 'Цена за штуку',
-    am: 'Մեկ հատի գինը',
-  },
-  settings: {
-    en: 'Extra options',
-    ru: 'Дополнительные параметры',
-    am: 'Լրացուցիչ պարամետրեր',
+    am: 'Բոլորը',
   },
 };
 
